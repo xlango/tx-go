@@ -14,4 +14,4 @@
     5.事务管理器通知分支事务commit/rollback  
 
 <h3>逻辑架构图</h3>
-![img](https://github.com/xx132917/tx-go/tree/master/image/txarchitecture.png)
+![](https://github.com/xx132917/tx-go/tree/master/image/txarchitecture.png)
