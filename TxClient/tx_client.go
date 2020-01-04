@@ -37,7 +37,7 @@ func main() {
 		IsEnd:   true,
 	}
 
-	start :=2
+	start := 2
 	if start == 1 {
 		bytes1, err := json.Marshal(&msg1)
 		checkError(err)
@@ -62,15 +62,15 @@ func main() {
 		//result, err := ioutil.ReadAll(conn)
 		b := make([]byte, 1024)
 		n, err := conn.Read(b)
-		if err!=nil {
+		if err != nil {
 			logs.Error(err)
 			return
 		}
 		reseiveMsg := make([]byte, n)
 		reseiveMsg = b[:n]
-		msg:=Msg{}
-		json.Unmarshal(reseiveMsg,&msg)
-		if msg.Command=="commit"||msg.Command=="rollback" {
+		msg := Msg{}
+		json.Unmarshal(reseiveMsg, &msg)
+		if msg.Command == "commit" || msg.Command == "rollback" {
 			fmt.Println(msg.Command)
 			conn.Close()
 			return
@@ -79,7 +79,7 @@ func main() {
 	}
 }
 
-type Msg struct {
+type Msg1 struct {
 	GroupId string
 	Type    string
 	Command string
@@ -87,9 +87,9 @@ type Msg struct {
 	IsEnd   bool
 }
 
-func checkError(err error) {
+func checkError1(err error) {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Fatal error: %s", err.Error())
-		os.Exit(1)
+		//os.Exit(1)
 	}
 }

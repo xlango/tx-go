@@ -2,200 +2,155 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f4ab9f2-741c-4f9c-bdeb-3766f75027d2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TxClient/tx_client.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TxManager/tx_server.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TxClient/txconnection.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tt/txconnection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TxClient/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/TxClient/connection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TxClient/tx_client.go" beforeDir="false" afterPath="$PROJECT_DIR$/TxClient/tx_client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TxManager/tx_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/TxManager/tx_server.go" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="1766849938">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.0" value="2" />
-          <entry key="project.opened" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="go" value="2" />
-          <entry key="md" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Go" value="2" />
-          <entry key="Markdown" value="1" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor />
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/TxManager/tx_server.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1710" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TxClient/tx_client.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" path="$PROJECT_DIR$/../../../../install" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/TxClient/tx_client.go" />
-      </list>
-    </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="55" />
-    <option name="y" value="15" />
-    <option name="width" value="1350" />
-    <option name="height" value="710" />
-  </component>
+  <component name="ProjectId" id="1Vutb0G65PilQQUzdyqojPtVQa8" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="tx-go" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tx-go" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tx-go" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tx-go" type="462c0819:PsiDirectoryNode" />
-              <item name="TxClient" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tx-go" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tx-go" type="462c0819:PsiDirectoryNode" />
-              <item name="TxManager" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="GO_FMT" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="configurable.Global.GOPATH.is.expanded" value="true" />
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.vendoring.notification.had.been.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tt" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoLibrariesConfigurableProvider" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Go\workspace\go\src\tx-go\tt" />
+      <recent name="D:\Go\workspace\go\src\tx-go\image" />
       <recent name="D:\Go\workspace\go\src\tx-go\TxClient" />
       <recent name="D:\Go\workspace\go\src\tx-go\TxManager" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="RunManager" selected="Go Build.go build tx-go/tt">
+    <configuration name="go build connection.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="tx-go" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/TxClient/connection.go" />
+      <package value="tx-go" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build tx-go/TxManager" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="tx-go" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/TxManager/tx_server.go" />
+      <package value="tx-go/TxManager" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build tx-go/tt" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="tx-go" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/tt/txconnection.go" />
+      <package value="tx-go/tt" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build txconnection.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="tx-go" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/TxClient/txconnection.go" />
+      <package value="tx-go" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Go Build.go build connection.go" />
+      <item itemvalue="Go Build.go build txconnection.go" />
+      <item itemvalue="Go Build.go build tx-go/TxManager" />
+      <item itemvalue="Go Build.go build tx-go/tt" />
+    </list>
+    <recent_temporary>
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <item itemvalue="Go Build.go build tx-go/tt" />
+        <item itemvalue="Go Build.go build txconnection.go" />
+        <item itemvalue="Go Build.go build tx-go/TxManager" />
+        <item itemvalue="Go Build.go build connection.go" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
       </list>
     </option>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17493297" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49932975" visible="true" weight="0.33006993" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067025" side_tool="true" weight="0.32960895" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Word Book" order="3" side_tool="true" />
-      <window_info anchor="right" id="Database" order="4" />
-    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="逻辑架构图" />
+    <option name="LAST_COMMIT_MESSAGE" value="逻辑架构图" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TxClient/tx_client.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TxManager/tx_server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1710" />
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state x="382" y="10" key="CommitChangelistDialog2" timestamp="1578148065305">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="382" y="10" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1578148065305" />
+    <state width="1493" height="185" key="GridCell.Tab.0.bottom" timestamp="1578137596897">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="185" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1578137596897" />
+    <state width="1493" height="185" key="GridCell.Tab.0.center" timestamp="1578137596897">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="185" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1578137596897" />
+    <state width="1493" height="185" key="GridCell.Tab.0.left" timestamp="1578137596897">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="185" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1578137596897" />
+    <state width="1493" height="185" key="GridCell.Tab.0.right" timestamp="1578137596897">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="185" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1578137596897" />
   </component>
 </project>

@@ -21,7 +21,7 @@ func init() {
 }
 
 func main() {
-	service := ":7777"
+	service := ":7778"
 	tcpAddr, err := net.ResolveTCPAddr("tcp4", service)
 	checkError1(err)
 	listener, err := net.ListenTCP("tcp", tcpAddr)
@@ -49,9 +49,9 @@ func handleClient(conn net.Conn) {
 	for {
 		b := make([]byte, 1024)
 		n, err := conn.Read(b)
-		if err!=nil {
+		if err != nil {
 			//客户端端口连接（异常断开或完成事务）
-			logs.Info("连接已断开",err)
+			logs.Info("连接已断开", err)
 			return
 		}
 		receiveMsg := make([]byte, n)
@@ -105,12 +105,10 @@ func sendResult(groupId string, rs []byte) {
 		//conn.Close()
 	}
 
-
 	//通知commit/rollback后解除该事务
 	delete(typeMap, groupId)
 	delete(isEndMap, groupId)
 	delete(countMap, groupId)
-
 
 	//for _, conn := range channelGroup[groupId] {
 	//	conn.Close()
