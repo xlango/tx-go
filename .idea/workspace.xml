@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f4ab9f2-741c-4f9c-bdeb-3766f75027d2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/TxClient/txconnection.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tt/txconnection.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TxClient/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/TxClient/connection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TxClient/connection.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/TxClient/tx_client.go" beforeDir="false" afterPath="$PROJECT_DIR$/TxClient/tx_client.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TxManager/tx_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/TxManager/tx_server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TxClient/txconnection.go" beforeDir="false" afterPath="$PROJECT_DIR$/TxClient/txconnection.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,28 +127,37 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="逻辑架构图" />
-    <option name="LAST_COMMIT_MESSAGE" value="逻辑架构图" />
+    <MESSAGE value="mysql代理数据源测试分布式事务完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="mysql代理数据源测试分布式事务完成" />
   </component>
   <component name="WindowStateProjectService">
     <state x="382" y="10" key="CommitChangelistDialog2" timestamp="1578148065305">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="382" y="10" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1578148065305" />
-    <state width="1493" height="185" key="GridCell.Tab.0.bottom" timestamp="1578137596897">
+    <state x="596" y="314" width="368" height="206" key="Github.CreateGistDialog" timestamp="1578206071848">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1578137596897" />
-    <state width="1493" height="185" key="GridCell.Tab.0.center" timestamp="1578137596897">
+    <state x="596" y="314" width="368" height="206" key="Github.CreateGistDialog/0.0.1536.834@0.0.1536.834" timestamp="1578206071848" />
+    <state width="1493" height="171" key="GridCell.Tab.0.bottom" timestamp="1578224773053">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1578137596897" />
-    <state width="1493" height="185" key="GridCell.Tab.0.left" timestamp="1578137596897">
+    <state width="1493" height="171" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1578224773053" />
+    <state width="1493" height="171" key="GridCell.Tab.0.center" timestamp="1578224773052">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1578137596897" />
-    <state width="1493" height="185" key="GridCell.Tab.0.right" timestamp="1578137596897">
+    <state width="1493" height="171" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1578224773052" />
+    <state width="1493" height="171" key="GridCell.Tab.0.left" timestamp="1578224773052">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1578137596897" />
+    <state width="1493" height="171" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1578224773052" />
+    <state width="1493" height="171" key="GridCell.Tab.0.right" timestamp="1578224773052">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="171" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1578224773052" />
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1578148234922">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1578148234922" />
   </component>
 </project>
