@@ -80,10 +80,6 @@ func (tx *TxConnection) Commit() error {
 		IsEnd:   tx.Msg.IsEnd,
 	}
 
-	if tx.Msg.Command != "" {
-		msg.Command = tx.Msg.Command
-	}
-
 	bytes, err := json.Marshal(&msg)
 	if err != nil {
 		log.Fatal(err)
@@ -137,7 +133,7 @@ func InsertTx(db *sql.Tx) error {
 		log.Fatal(err)
 		return err
 	}
-	res, err := stmt.Exec("python1", 18)
+	res, err := stmt.Exec("java", 20)
 	if err != nil {
 		log.Fatal(err)
 		return err
@@ -154,7 +150,6 @@ func InsertTx(db *sql.Tx) error {
 	}
 	fmt.Printf("ID=%d, affected=%d\n", lastId, rowCnt)
 
-	//return errors.New("test")
 	return nil
 }
 
@@ -196,16 +191,6 @@ func RMCommit(tx *TxConnection, count int, isEnd bool) {
 	tx.Msg.Type = "commit"
 }
 
-//事务发起者取消事务
-func TMCancel(tx *TxConnection) {
-	tx.Msg.Command = "cancel"
-}
-
-//超时取消全局事务，并回滚
-func timeout(tx *TxConnection) {
-	time.Sleep(5 * time.Second)
-	TMCancel(tx)
-}
 func main() {
 	db, err := sql.Open("mysql", "root:123456@/test")
 	defer db.Close()
@@ -215,7 +200,7 @@ func main() {
 	}
 
 	//开启全局事务
-	txConnection, err := TMBegin(db, true) //事务发起者
+	txConnection, err := TMBegin(db, false) //非事务发起者
 	if err != nil {
 		log.Fatal(err)
 		return
@@ -226,12 +211,17 @@ func main() {
 
 	if err != nil {
 		//设置回滚消息
-		RMRollback(txConnection, 3, true)
+		RMRollback(txConnection, 3, false)
 	} else {
 		//设置提交消息
-		RMCommit(txConnection, 3, true)
+		RMCommit(txConnection, 3, false)
 	}
-
+	//time.Sleep(10*time.Second)
 	//提交全局事务
 	txConnection.Commit()
+}
+
+func timeout() bool {
+	time.Sleep(5 * time.Second)
+	return true
 }

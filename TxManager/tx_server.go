@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/astaxie/beego/logs"
+	"log"
 	"net"
 	"os"
 )
@@ -11,13 +12,13 @@ import (
 var typeMap map[string][]string
 var isEndMap map[string]bool
 var countMap map[string]int
-var channelGroup map[string][]net.Conn
+var channelGroup map[string][]*net.Conn
 
 func init() {
 	typeMap = make(map[string][]string)
 	isEndMap = make(map[string]bool)
 	countMap = make(map[string]int)
-	channelGroup = make(map[string][]net.Conn)
+	channelGroup = make(map[string][]*net.Conn)
 }
 
 func main() {
@@ -44,14 +45,27 @@ type Msg struct {
 }
 
 func handleClient(conn net.Conn) {
-	//defer conn.Close()
 
-	for {
+	//RM在wait时异常断开连接
+	groupId := ""
+	fmt.Printf("1=======%T,%v,%p ***********\n", groupId, groupId, &groupId)
+
+	for true {
 		b := make([]byte, 1024)
 		n, err := conn.Read(b)
 		if err != nil {
+			fmt.Println("gid==========", groupId)
+			fmt.Printf("2=======%T,%v,%p \n", groupId, groupId, &groupId)
 			//客户端端口连接（异常断开或完成事务）
+			//客户端RM在wait时异常断开连接，通知整个事务组的事务进行回滚
 			logs.Info("连接已断开", err)
+			rsMsg := Msg{
+				GroupId: groupId,
+			}
+			rsMsg.Command = "rollback"
+			rsbytes, _ := json.Marshal(&rsMsg)
+			//checkError(err)
+			sendResult(groupId, rsbytes)
 			return
 		}
 		receiveMsg := make([]byte, n)
@@ -64,13 +78,20 @@ func handleClient(conn net.Conn) {
 		if msg.Command == "create" {
 			//创建事务组
 			typeMap[msg.GroupId] = make([]string, 0)
-			channelGroup[msg.GroupId] = make([]net.Conn, 0)
+			channelGroup[msg.GroupId] = make([]*net.Conn, 0)
+
+			groupId = msg.GroupId
+
+			fmt.Println("gid2---------", groupId)
+			fmt.Printf("3=======%T,%v,%p \n", groupId, groupId, &groupId)
 		} else if msg.Command == "add" {
+			groupId = msg.GroupId
+
 			//加入事务组
 			typeMap[msg.GroupId] = append(typeMap[msg.GroupId], msg.Type)
-			fmt.Printf("%T===%v===%d", typeMap[msg.GroupId], typeMap[msg.GroupId], len(typeMap[msg.GroupId]))
+			fmt.Printf("%T===%v===%d \n", typeMap[msg.GroupId], typeMap[msg.GroupId], len(typeMap[msg.GroupId]))
 
-			channelGroup[msg.GroupId] = append(channelGroup[msg.GroupId], conn)
+			channelGroup[msg.GroupId] = append(channelGroup[msg.GroupId], &conn)
 
 			if msg.IsEnd {
 				isEndMap[msg.GroupId] = true
@@ -93,16 +114,29 @@ func handleClient(conn net.Conn) {
 					sendResult(msg.GroupId, rsbytes)
 				}
 			}
-		}
+		} else if msg.Command == "cancel" {
+			//如果事务发起者提前结束事务，通知分支事务回滚
+			rsMsg := Msg{
+				GroupId: msg.GroupId,
+				Command: "rollback",
+			}
 
+			rsbytes, err := json.Marshal(&rsMsg)
+			checkError(err)
+			sendResult(msg.GroupId, rsbytes)
+		}
 	}
 
 }
 
 func sendResult(groupId string, rs []byte) {
 	for _, conn := range channelGroup[groupId] {
-		conn.Write(rs)
-		//conn.Close()
+		(*conn).LocalAddr()
+		_, err := (*conn).Write(rs)
+		if err != nil {
+			log.Fatal(err)
+		}
+
 	}
 
 	//通知commit/rollback后解除该事务

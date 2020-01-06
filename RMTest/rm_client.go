@@ -8,6 +8,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"net"
+	"time"
 )
 
 type Msg struct {
@@ -132,7 +133,7 @@ func InsertTx(db *sql.Tx) error {
 		log.Fatal(err)
 		return err
 	}
-	res, err := stmt.Exec("python1", 18)
+	res, err := stmt.Exec("java", 20)
 	if err != nil {
 		log.Fatal(err)
 		return err
@@ -218,4 +219,9 @@ func main() {
 
 	//提交全局事务
 	txConnection.Commit()
+}
+
+func timeout() bool {
+	time.Sleep(5 * time.Second)
+	return true
 }

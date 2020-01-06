@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8f4ab9f2-741c-4f9c-bdeb-3766f75027d2" name="Default Changelist" comment="">
+    <list default="true" id="8f4ab9f2-741c-4f9c-bdeb-3766f75027d2" name="Default Changelist" comment="整理0105">
+      <change afterPath="$PROJECT_DIR$/RMTest1/rm_client.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TxClient/connection.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RMTest/rm_client.go" beforeDir="false" afterPath="$PROJECT_DIR$/RMTest/rm_client.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TxClient/tx_client.go" beforeDir="false" afterPath="$PROJECT_DIR$/TxClient/tx_client.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TxClient/txconnection.go" beforeDir="false" afterPath="$PROJECT_DIR$/TxClient/txconnection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TxManager/tx_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/TxManager/tx_server.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +17,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Go File" />
+        <option value="Go Application" />
       </list>
     </option>
   </component>
@@ -31,7 +33,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="DefaultGoTemplateProperty" value="Go Application" />
     <property name="GO_FMT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="configurable.Global.GOPATH.is.expanded" value="true" />
@@ -39,7 +41,7 @@
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tt" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -52,19 +54,38 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Go\workspace\go\src\tx-go" />
       <recent name="D:\Go\workspace\go\src\tx-go\tt" />
       <recent name="D:\Go\workspace\go\src\tx-go\image" />
       <recent name="D:\Go\workspace\go\src\tx-go\TxClient" />
       <recent name="D:\Go\workspace\go\src\tx-go\TxManager" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build tx-go/tt">
-    <configuration name="go build connection.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Build.go build tx-go/RMTest1">
+    <configuration name="go build tx-go/RMTest" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="tx-go" />
       <working_directory value="$PROJECT_DIR$/" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/TxClient/connection.go" />
-      <package value="tx-go" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/RMTest/rm_client.go" />
+      <package value="tx-go/RMTest" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build tx-go/RMTest1" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="tx-go" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/RMTest1/rm_client.go" />
+      <package value="tx-go/RMTest1" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build tx-go/TxClient" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="tx-go" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/TxClient/tx_client.go" />
+      <package value="tx-go/TxClient" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
@@ -86,27 +107,20 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="go build txconnection.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="tx-go" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/TxClient/txconnection.go" />
-      <package value="tx-go" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Go Build.go build connection.go" />
-      <item itemvalue="Go Build.go build txconnection.go" />
       <item itemvalue="Go Build.go build tx-go/TxManager" />
       <item itemvalue="Go Build.go build tx-go/tt" />
+      <item itemvalue="Go Build.go build tx-go/TxClient" />
+      <item itemvalue="Go Build.go build tx-go/RMTest" />
+      <item itemvalue="Go Build.go build tx-go/RMTest1" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build tx-go/tt" />
-        <item itemvalue="Go Build.go build txconnection.go" />
+        <item itemvalue="Go Build.go build tx-go/RMTest1" />
+        <item itemvalue="Go Build.go build tx-go/TxClient" />
         <item itemvalue="Go Build.go build tx-go/TxManager" />
-        <item itemvalue="Go Build.go build connection.go" />
+        <item itemvalue="Go Build.go build tx-go/RMTest" />
+        <item itemvalue="Go Build.go build tx-go/tt" />
       </list>
     </recent_temporary>
   </component>
@@ -128,36 +142,70 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="逻辑架构图" />
     <MESSAGE value="mysql代理数据源测试分布式事务完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="mysql代理数据源测试分布式事务完成" />
+    <MESSAGE value="整理0105" />
+    <MESSAGE value="TM、RM封装" />
+    <option name="LAST_COMMIT_MESSAGE" value="TM、RM封装" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="382" y="10" key="CommitChangelistDialog2" timestamp="1578148065305">
+    <state x="382" y="10" key="CommitChangelistDialog2" timestamp="1578303556258">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="382" y="10" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1578148065305" />
+    <state x="382" y="10" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1578303556258" />
     <state x="596" y="314" width="368" height="206" key="Github.CreateGistDialog" timestamp="1578206071848">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="596" y="314" width="368" height="206" key="Github.CreateGistDialog/0.0.1536.834@0.0.1536.834" timestamp="1578206071848" />
-    <state width="1493" height="171" key="GridCell.Tab.0.bottom" timestamp="1578224773053">
+    <state width="1493" height="235" key="GridCell.Tab.0.bottom" timestamp="1578328908002">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="171" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1578224773053" />
-    <state width="1493" height="171" key="GridCell.Tab.0.center" timestamp="1578224773052">
+    <state width="1493" height="235" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1578328908002" />
+    <state width="1493" height="235" key="GridCell.Tab.0.center" timestamp="1578328908002">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="171" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1578224773052" />
-    <state width="1493" height="171" key="GridCell.Tab.0.left" timestamp="1578224773052">
+    <state width="1493" height="235" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1578328908002" />
+    <state width="1493" height="235" key="GridCell.Tab.0.left" timestamp="1578328908002">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="171" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1578224773052" />
-    <state width="1493" height="171" key="GridCell.Tab.0.right" timestamp="1578224773052">
+    <state width="1493" height="235" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1578328908002" />
+    <state width="1493" height="235" key="GridCell.Tab.0.right" timestamp="1578328908002">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="171" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1578224773052" />
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1578148234922">
+    <state width="1493" height="235" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1578328908002" />
+    <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1578328146668">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1578148234922" />
+    <state width="1493" height="265" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1578328146668" />
+    <state width="1493" height="265" key="GridCell.Tab.1.center" timestamp="1578328146668">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="265" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1578328146668" />
+    <state width="1493" height="265" key="GridCell.Tab.1.left" timestamp="1578328146668">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="265" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1578328146668" />
+    <state width="1493" height="265" key="GridCell.Tab.1.right" timestamp="1578328146668">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="265" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1578328146668" />
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1578303564087">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1578303564087" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/TxManager/tx_server.go</url>
+          <line>56</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/TxManager/tx_server.go</url>
+          <line>80</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
