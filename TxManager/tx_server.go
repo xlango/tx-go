@@ -23,9 +23,9 @@ func init() {
 func main() {
 	service := ":7778"
 	tcpAddr, err := net.ResolveTCPAddr("tcp4", service)
-	checkError1(err)
+	checkError(err)
 	listener, err := net.ListenTCP("tcp", tcpAddr)
-	checkError1(err)
+	checkError(err)
 	for {
 		conn, err := listener.Accept()
 		if err != nil {
@@ -84,12 +84,12 @@ func handleClient(conn net.Conn) {
 				if contains(typeMap[msg.GroupId], "rollback") {
 					rsMsg.Command = "rollback"
 					rsbytes, err := json.Marshal(&rsMsg)
-					checkError1(err)
+					checkError(err)
 					sendResult(msg.GroupId, rsbytes)
 				} else {
 					rsMsg.Command = "commit"
 					rsbytes, err := json.Marshal(&rsMsg)
-					checkError1(err)
+					checkError(err)
 					sendResult(msg.GroupId, rsbytes)
 				}
 			}
@@ -118,7 +118,7 @@ func sendResult(groupId string, rs []byte) {
 
 }
 
-func checkError1(err error) {
+func checkError(err error) {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Fatal error: %s", err.Error())
 		os.Exit(1)

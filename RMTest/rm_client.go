@@ -8,7 +8,6 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"net"
-	"os"
 )
 
 type Msg struct {
@@ -24,37 +23,56 @@ type TxConnection struct {
 	IsStart bool
 }
 
+//代理开启全局事务，TM发送begin
 func (tx *TxConnection) Begin() error {
-	fmt.Println("代理commit 开启事务")
+	fmt.Println("代理开启全局事务")
 	tcpAddr, err := net.ResolveTCPAddr("tcp4", "localhost:7778")
-	checkError(err)
-	conn, err := net.DialTCP("tcp", nil, tcpAddr)
-	checkError(err)
-
-	msg1 := Msg{
-		GroupId: "group1",
-		Type:    "",
-		Command: "create",
-		//TxCount: tx.Msg.TxCount,
+	if err != nil {
+		log.Fatal(err)
+		return err
 	}
-	bytes, err := json.Marshal(&msg1)
-	checkError(err)
+
+	conn, err := net.DialTCP("tcp", nil, tcpAddr)
+	if err != nil {
+		log.Fatal(err)
+		return err
+	}
+
+	msg := Msg{
+		GroupId: tx.Msg.GroupId,
+		Command: "create",
+	}
+	bytes, err := json.Marshal(&msg)
+	if err != nil {
+		log.Fatal(err)
+		return err
+	}
 
 	_, err = conn.Write(bytes)
-	checkError(err)
+	if err != nil {
+		log.Fatal(err)
+		return err
+	}
 
-	return err
+	return nil
 }
 
 func (tx *TxConnection) Commit() error {
 	fmt.Println("代理commit")
 	tcpAddr, err := net.ResolveTCPAddr("tcp4", "localhost:7778")
-	checkError(err)
+	if err != nil {
+		log.Fatal(err)
+		return err
+	}
+
 	conn, err := net.DialTCP("tcp", nil, tcpAddr)
-	checkError(err)
+	if err != nil {
+		log.Fatal(err)
+		return err
+	}
 
 	msg := Msg{
-		GroupId: "group1",
+		GroupId: tx.Msg.GroupId,
 		Type:    tx.Msg.Type,
 		Command: "add",
 		TxCount: tx.Msg.TxCount,
@@ -62,13 +80,18 @@ func (tx *TxConnection) Commit() error {
 	}
 
 	bytes, err := json.Marshal(&msg)
-	checkError(err)
+	if err != nil {
+		log.Fatal(err)
+		return err
+	}
 
 	_, err = conn.Write(bytes)
-	checkError(err)
+	if err != nil {
+		log.Fatal(err)
+		return err
+	}
 
 	for {
-		//result, err := ioutil.ReadAll(conn)
 		b := make([]byte, 1024)
 		n, err := conn.Read(b)
 		if err != nil {
@@ -103,7 +126,7 @@ func (tx *TxConnection) Rollback() error {
 }
 
 // 插入数据事务
-func InsertTx1(db *sql.Tx) error {
+func InsertTx(db *sql.Tx) error {
 	stmt, err := db.Prepare("INSERT INTO user(name, age) VALUES(?, ?);")
 	if err != nil {
 		log.Fatal(err)
@@ -129,44 +152,70 @@ func InsertTx1(db *sql.Tx) error {
 	return nil
 }
 
-func main() {
-	// username: root; password: 123456; database: test
+func TMBegin(db *sql.DB, isTM bool) (*TxConnection, error) {
 
-	db, err := sql.Open("mysql", "root:123456@/test")
-	if err != nil {
-		log.Fatal(err)
-	}
 	tx, err := db.Begin()
 	if err != nil {
 		log.Fatal(err)
+		return nil, err
 	}
 	txConnection := &TxConnection{
 		Tx: tx,
 	}
-	//txConnection.Begin()
-	txConnection.Msg.Command = "add"
-	txConnection.Msg.TxCount = 2
-	txConnection.Msg.IsEnd = true
-	if err != nil {
-		txConnection.Msg.Type = "rollback"
-		log.Fatal(err)
-	}
-	defer db.Close()
+	//事务组ID
+	txConnection.Msg.GroupId = "0001"
 
-	err = InsertTx1(txConnection.Tx)
+	//是否为事务发起者TM
+	if isTM {
+		err = txConnection.Begin()
 
-	if err != nil {
-		txConnection.Msg.Type = "rollback"
-		//log.Fatal(err)
+		if err != nil {
+			log.Fatal(err)
+			return nil, err
+		}
 	}
 
-	txConnection.Msg.Type = "commit"
-	txConnection.Commit()
+	return txConnection, nil
 }
 
-func checkError(err error) {
+func RMRollback(tx *TxConnection, count int, isEnd bool) {
+	tx.Msg.TxCount = count
+	tx.Msg.IsEnd = isEnd
+	tx.Msg.Type = "rollback"
+}
+
+func RMCommit(tx *TxConnection, count int, isEnd bool) {
+	tx.Msg.TxCount = count
+	tx.Msg.IsEnd = isEnd
+	tx.Msg.Type = "commit"
+}
+
+func main() {
+	db, err := sql.Open("mysql", "root:123456@/test")
+	defer db.Close()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Fatal error: %s", err.Error())
-		//os.Exit(1)
+		log.Fatal(err)
+		return
 	}
+
+	//开启全局事务
+	txConnection, err := TMBegin(db, false) //非事务发起者
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+
+	//执行本地事务
+	err = InsertTx(txConnection.Tx)
+
+	if err != nil {
+		//设置回滚消息
+		RMRollback(txConnection, 2, false)
+	} else {
+		//设置提交消息
+		RMCommit(txConnection, 2, false)
+	}
+
+	//提交全局事务
+	txConnection.Commit()
 }
