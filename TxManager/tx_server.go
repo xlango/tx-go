@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/astaxie/beego/logs"
-	"log"
 	"net"
 	"os"
 )
@@ -48,14 +47,11 @@ func handleClient(conn net.Conn) {
 
 	//RM在wait时异常断开连接
 	groupId := ""
-	fmt.Printf("1=======%T,%v,%p ***********\n", groupId, groupId, &groupId)
 
 	for true {
 		b := make([]byte, 1024)
 		n, err := conn.Read(b)
 		if err != nil {
-			fmt.Println("gid==========", groupId)
-			fmt.Printf("2=======%T,%v,%p \n", groupId, groupId, &groupId)
 			//客户端端口连接（异常断开或完成事务）
 			//客户端RM在wait时异常断开连接，通知整个事务组的事务进行回滚
 			logs.Info("连接已断开", err)
@@ -82,14 +78,10 @@ func handleClient(conn net.Conn) {
 
 			groupId = msg.GroupId
 
-			fmt.Println("gid2---------", groupId)
-			fmt.Printf("3=======%T,%v,%p \n", groupId, groupId, &groupId)
 		} else if msg.Command == "add" {
 			groupId = msg.GroupId
-
 			//加入事务组
 			typeMap[msg.GroupId] = append(typeMap[msg.GroupId], msg.Type)
-			fmt.Printf("%T===%v===%d \n", typeMap[msg.GroupId], typeMap[msg.GroupId], len(typeMap[msg.GroupId]))
 
 			channelGroup[msg.GroupId] = append(channelGroup[msg.GroupId], &conn)
 
@@ -104,13 +96,13 @@ func handleClient(conn net.Conn) {
 			if isEndMap[msg.GroupId] && countMap[msg.GroupId] == len(typeMap[msg.GroupId]) {
 				if contains(typeMap[msg.GroupId], "rollback") {
 					rsMsg.Command = "rollback"
-					rsbytes, err := json.Marshal(&rsMsg)
-					checkError(err)
+					rsbytes, _ := json.Marshal(&rsMsg)
+					//checkError(err)
 					sendResult(msg.GroupId, rsbytes)
 				} else {
 					rsMsg.Command = "commit"
-					rsbytes, err := json.Marshal(&rsMsg)
-					checkError(err)
+					rsbytes, _ := json.Marshal(&rsMsg)
+					//checkError(err)
 					sendResult(msg.GroupId, rsbytes)
 				}
 			}
@@ -121,8 +113,8 @@ func handleClient(conn net.Conn) {
 				Command: "rollback",
 			}
 
-			rsbytes, err := json.Marshal(&rsMsg)
-			checkError(err)
+			rsbytes, _ := json.Marshal(&rsMsg)
+			//checkError(err)
 			sendResult(msg.GroupId, rsbytes)
 		}
 	}
@@ -131,12 +123,10 @@ func handleClient(conn net.Conn) {
 
 func sendResult(groupId string, rs []byte) {
 	for _, conn := range channelGroup[groupId] {
-		(*conn).LocalAddr()
 		_, err := (*conn).Write(rs)
 		if err != nil {
-			log.Fatal(err)
+			logs.Error(err)
 		}
-
 	}
 
 	//通知commit/rollback后解除该事务

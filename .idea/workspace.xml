@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8f4ab9f2-741c-4f9c-bdeb-3766f75027d2" name="Default Changelist" comment="整理0105">
-      <change afterPath="$PROJECT_DIR$/RMTest1/rm_client.go" afterDir="false" />
+    <list default="true" id="8f4ab9f2-741c-4f9c-bdeb-3766f75027d2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RMTest/rm_client.go" beforeDir="false" afterPath="$PROJECT_DIR$/RMTest/rm_client.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TxClient/tx_client.go" beforeDir="false" afterPath="$PROJECT_DIR$/TxClient/tx_client.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TxManager/tx_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/TxManager/tx_server.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -144,33 +141,34 @@
     <MESSAGE value="mysql代理数据源测试分布式事务完成" />
     <MESSAGE value="整理0105" />
     <MESSAGE value="TM、RM封装" />
-    <option name="LAST_COMMIT_MESSAGE" value="TM、RM封装" />
+    <MESSAGE value="连接异常中断，sever通知该组所有分支事务回滚" />
+    <option name="LAST_COMMIT_MESSAGE" value="连接异常中断，sever通知该组所有分支事务回滚" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="382" y="10" key="CommitChangelistDialog2" timestamp="1578303556258">
+    <state x="382" y="10" key="CommitChangelistDialog2" timestamp="1578328983564">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="382" y="10" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1578303556258" />
+    <state x="382" y="10" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1578328983564" />
     <state x="596" y="314" width="368" height="206" key="Github.CreateGistDialog" timestamp="1578206071848">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="596" y="314" width="368" height="206" key="Github.CreateGistDialog/0.0.1536.834@0.0.1536.834" timestamp="1578206071848" />
-    <state width="1493" height="235" key="GridCell.Tab.0.bottom" timestamp="1578328908002">
+    <state width="1493" height="156" key="GridCell.Tab.0.bottom" timestamp="1578368228514">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="235" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1578328908002" />
-    <state width="1493" height="235" key="GridCell.Tab.0.center" timestamp="1578328908002">
+    <state width="1493" height="156" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1578368228514" />
+    <state width="1493" height="156" key="GridCell.Tab.0.center" timestamp="1578368228514">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="235" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1578328908002" />
-    <state width="1493" height="235" key="GridCell.Tab.0.left" timestamp="1578328908002">
+    <state width="1493" height="156" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1578368228514" />
+    <state width="1493" height="156" key="GridCell.Tab.0.left" timestamp="1578368228513">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="235" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1578328908002" />
-    <state width="1493" height="235" key="GridCell.Tab.0.right" timestamp="1578328908002">
+    <state width="1493" height="156" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1578368228513" />
+    <state width="1493" height="156" key="GridCell.Tab.0.right" timestamp="1578368228514">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="235" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1578328908002" />
+    <state width="1493" height="156" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1578368228514" />
     <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1578328146668">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -187,22 +185,22 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state width="1493" height="265" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1578328146668" />
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1578303564087">
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1578328991392">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1578303564087" />
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1578328991392" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/TxManager/tx_server.go</url>
-          <line>56</line>
+          <line>53</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/TxManager/tx_server.go</url>
-          <line>80</line>
+          <line>74</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
