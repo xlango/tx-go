@@ -15,3 +15,12 @@
 
 <h3>逻辑架构图</h3>
 ![img](https://github.com/xx132917/tx-go/blob/master/image/txarchitecture.png)
+
+<h3>解决问题</h3>
+    
+    1.wait时有分支事务宕机：server发现socket连接中断，通知所有分支事务回滚
+    2.wait时server宕机：本地事务发现socket连接中断，本地执行回滚
+    3.server在通知分支事务commit/rollback时有分支事务宕机：
+    4.server集群方案：加上层proxy（proxy可多节点），proxy保存groupId和节点的关系，
+      根据groupId将同一个groupId的连接路由到同一个节点
+    5.

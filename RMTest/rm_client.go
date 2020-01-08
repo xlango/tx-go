@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/astaxie/beego/logs"
 	_ "github.com/go-sql-driver/mysql"
@@ -41,6 +42,7 @@ func (tx *TxConnection) Begin() error {
 
 	msg := Msg{
 		GroupId: tx.Msg.GroupId,
+		TxCount: tx.Msg.TxCount,
 		Command: "create",
 	}
 	bytes, err := json.Marshal(&msg)
@@ -62,13 +64,16 @@ func (tx *TxConnection) Commit() error {
 	fmt.Println("代理commit")
 	tcpAddr, err := net.ResolveTCPAddr("tcp4", "localhost:7778")
 	if err != nil {
-		log.Fatal(err)
+		logs.Error(err)
+		tx.Tx.Rollback()
 		return err
 	}
 
 	conn, err := net.DialTCP("tcp", nil, tcpAddr)
 	if err != nil {
-		log.Fatal(err)
+		logs.Error(err)
+		tx.Tx.Rollback()
+		conn.Close()
 		return err
 	}
 
@@ -80,15 +85,23 @@ func (tx *TxConnection) Commit() error {
 		IsEnd:   tx.Msg.IsEnd,
 	}
 
+	if tx.Msg.Command != "" {
+		msg.Command = tx.Msg.Command
+	}
+
 	bytes, err := json.Marshal(&msg)
 	if err != nil {
-		log.Fatal(err)
+		logs.Error(err)
+		tx.Tx.Rollback()
+		conn.Close()
 		return err
 	}
 
 	_, err = conn.Write(bytes)
 	if err != nil {
-		log.Fatal(err)
+		logs.Error(err)
+		tx.Tx.Rollback()
+		conn.Close()
 		return err
 	}
 
@@ -97,6 +110,8 @@ func (tx *TxConnection) Commit() error {
 		n, err := conn.Read(b)
 		if err != nil {
 			logs.Error(err)
+			tx.Tx.Rollback()
+			conn.Close()
 			return err
 		}
 		reseiveMsg := make([]byte, n)
@@ -133,31 +148,32 @@ func InsertTx(db *sql.Tx) error {
 		log.Fatal(err)
 		return err
 	}
-	res, err := stmt.Exec("java", 20)
+	res, err := stmt.Exec("eeeeee", 18)
 	if err != nil {
-		log.Fatal(err)
+		logs.Error(err)
 		return err
 	}
 	lastId, err := res.LastInsertId()
 	if err != nil {
-		log.Fatal(err)
+		logs.Error(err)
 		return err
 	}
 	rowCnt, err := res.RowsAffected()
 	if err != nil {
-		log.Fatal(err)
+		logs.Error(err)
 		return err
 	}
 	fmt.Printf("ID=%d, affected=%d\n", lastId, rowCnt)
 
+	//return errors.New("test")
 	return nil
 }
 
-func TMBegin(db *sql.DB, isTM bool) (*TxConnection, error) {
+func TMBegin(db *sql.DB, isTM bool, txCount ...int) (*TxConnection, error) {
 
 	tx, err := db.Begin()
 	if err != nil {
-		log.Fatal(err)
+		logs.Error(err)
 		return nil, err
 	}
 	txConnection := &TxConnection{
@@ -168,10 +184,16 @@ func TMBegin(db *sql.DB, isTM bool) (*TxConnection, error) {
 
 	//是否为事务发起者TM
 	if isTM {
+		//分支事务总个数
+		if len(txCount) == 0 {
+			return nil, errors.New("事务发起者请设置分支事务数量")
+		}
+		txConnection.Msg.TxCount = txCount[0]
+
 		err = txConnection.Begin()
 
 		if err != nil {
-			log.Fatal(err)
+			logs.Error(err)
 			return nil, err
 		}
 	}
@@ -179,18 +201,28 @@ func TMBegin(db *sql.DB, isTM bool) (*TxConnection, error) {
 	return txConnection, nil
 }
 
-func RMRollback(tx *TxConnection, count int, isEnd bool) {
-	tx.Msg.TxCount = count
+func RMRollback(tx *TxConnection, isEnd bool) {
+	//tx.Msg.TxCount = count
 	tx.Msg.IsEnd = isEnd
 	tx.Msg.Type = "rollback"
 }
 
-func RMCommit(tx *TxConnection, count int, isEnd bool) {
-	tx.Msg.TxCount = count
+func RMCommit(tx *TxConnection, isEnd bool) {
+	//tx.Msg.TxCount = count
 	tx.Msg.IsEnd = isEnd
 	tx.Msg.Type = "commit"
 }
 
+//事务发起者取消事务
+func TMCancel(tx *TxConnection) {
+	tx.Msg.Command = "cancel"
+}
+
+//超时取消全局事务，并回滚
+func timeout(tx *TxConnection) {
+	time.Sleep(5 * time.Second)
+	TMCancel(tx)
+}
 func main() {
 	db, err := sql.Open("mysql", "root:123456@/test")
 	defer db.Close()
@@ -211,17 +243,12 @@ func main() {
 
 	if err != nil {
 		//设置回滚消息
-		RMRollback(txConnection, 2, false)
+		RMRollback(txConnection, false)
 	} else {
 		//设置提交消息
-		RMCommit(txConnection, 2, false)
+		RMCommit(txConnection, false)
 	}
 
 	//提交全局事务
 	txConnection.Commit()
-}
-
-func timeout() bool {
-	time.Sleep(5 * time.Second)
-	return true
 }

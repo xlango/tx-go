@@ -75,7 +75,7 @@ func handleClient(conn net.Conn) {
 			//创建事务组
 			typeMap[msg.GroupId] = make([]string, 0)
 			channelGroup[msg.GroupId] = make([]*net.Conn, 0)
-
+			countMap[msg.GroupId] = msg.TxCount
 			groupId = msg.GroupId
 
 		} else if msg.Command == "add" {
@@ -87,7 +87,6 @@ func handleClient(conn net.Conn) {
 
 			if msg.IsEnd {
 				isEndMap[msg.GroupId] = true
-				countMap[msg.GroupId] = msg.TxCount
 			}
 
 			rsMsg := Msg{
