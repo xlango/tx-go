@@ -9,6 +9,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"net"
+	"net/http"
 	"time"
 )
 
@@ -105,34 +106,68 @@ func (tx *TxConnection) Commit() error {
 		return err
 	}
 
-	for {
-		b := make([]byte, 1024)
-		n, err := conn.Read(b)
-		if err != nil {
-			logs.Error(err)
-			tx.Tx.Rollback()
-			conn.Close()
-			return err
-		}
-		reseiveMsg := make([]byte, n)
-		reseiveMsg = b[:n]
-		msg := Msg{}
-		json.Unmarshal(reseiveMsg, &msg)
-		if msg.Command == "commit" {
-			//收到事务管理器通知提交
-			fmt.Println(msg.Command)
-			tx.Tx.Commit()
-			conn.Close()
-			return err
-		} else if msg.Command == "rollback" {
-			//收到事务管理器通知回滚
-			fmt.Println(msg.Command)
-			tx.Tx.Rollback()
-			conn.Close()
-			return err
-		}
+	if tx.IsStart {
+		for {
+			b := make([]byte, 1024)
+			n, err := conn.Read(b)
+			if err != nil {
+				logs.Error(err)
+				tx.Tx.Rollback()
+				conn.Close()
+				return err
+			}
+			reseiveMsg := make([]byte, n)
+			reseiveMsg = b[:n]
+			msg := Msg{}
+			json.Unmarshal(reseiveMsg, &msg)
+			if msg.Command == "commit" {
+				//收到事务管理器通知提交
+				fmt.Println(msg.Command)
+				tx.Tx.Commit()
+				conn.Close()
+				return err
+			} else if msg.Command == "rollback" {
+				//收到事务管理器通知回滚
+				fmt.Println(msg.Command)
+				tx.Tx.Rollback()
+				conn.Close()
+				return err
+			}
 
+		}
+	} else {
+		go func() {
+			for {
+				b := make([]byte, 1024)
+				n, err := conn.Read(b)
+				if err != nil {
+					logs.Error(err)
+					tx.Tx.Rollback()
+					conn.Close()
+					return
+				}
+				reseiveMsg := make([]byte, n)
+				reseiveMsg = b[:n]
+				msg := Msg{}
+				json.Unmarshal(reseiveMsg, &msg)
+				if msg.Command == "commit" {
+					//收到事务管理器通知提交
+					fmt.Println(msg.Command)
+					tx.Tx.Commit()
+					conn.Close()
+					return
+				} else if msg.Command == "rollback" {
+					//收到事务管理器通知回滚
+					fmt.Println(msg.Command)
+					tx.Tx.Rollback()
+					conn.Close()
+					return
+				}
+
+			}
+		}()
 	}
+
 	return nil
 }
 
@@ -148,7 +183,7 @@ func InsertTx(db *sql.Tx) error {
 		log.Fatal(err)
 		return err
 	}
-	res, err := stmt.Exec("wwww", 18)
+	res, err := stmt.Exec("sssssssss", 1)
 	if err != nil {
 		logs.Error(err)
 		return err
@@ -165,8 +200,8 @@ func InsertTx(db *sql.Tx) error {
 	}
 	fmt.Printf("ID=%d, affected=%d\n", lastId, rowCnt)
 
-	return errors.New("test")
-	//return nil
+	//return errors.New("test")
+	return nil
 }
 
 func TMBegin(db *sql.DB, isTM bool, txCount ...int) (*TxConnection, error) {
@@ -180,7 +215,7 @@ func TMBegin(db *sql.DB, isTM bool, txCount ...int) (*TxConnection, error) {
 		Tx: tx,
 	}
 	//事务组ID
-	txConnection.Msg.GroupId = "0001"
+	//txConnection.Msg.GroupId = "0001"
 
 	//是否为事务发起者TM
 	if isTM {
@@ -188,7 +223,14 @@ func TMBegin(db *sql.DB, isTM bool, txCount ...int) (*TxConnection, error) {
 		if len(txCount) == 0 {
 			return nil, errors.New("事务发起者请设置分支事务数量")
 		}
+
+		if txCount[0] <= 0 {
+			return nil, errors.New("分支事务数不能小于等于0")
+		}
 		txConnection.Msg.TxCount = txCount[0]
+
+		//事务发起者标识
+		txConnection.IsStart = true
 
 		err = txConnection.Begin()
 
@@ -223,18 +265,38 @@ func timeout(tx *TxConnection) {
 	time.Sleep(5 * time.Second)
 	TMCancel(tx)
 }
+
 func main() {
-	db, err := sql.Open("mysql", "root:123456@/test")
+
+	http.HandleFunc("/rm1", tm1)
+	log.Fatal(http.ListenAndServe(":1000", nil))
+
+}
+
+func tm1(w http.ResponseWriter, r *http.Request) {
+	vars := r.URL.Query()
+	groupId, ok := vars["groupId"]
+	if !ok {
+		logs.Error(errors.New("no groupId"))
+		w.Write([]byte("error"))
+		return
+	}
+
+	db, err := sql.Open("mysql", "root:123456@/test1")
 	defer db.Close()
 	if err != nil {
-		log.Fatal(err)
+		logs.Error(err)
+		w.Write([]byte("error"))
 		return
 	}
 
 	//开启全局事务
 	txConnection, err := TMBegin(db, false) //非事务发起者
+	txConnection.Msg.GroupId = groupId[0]
+
 	if err != nil {
-		log.Fatal(err)
+		logs.Error(err)
+		w.Write([]byte("error"))
 		return
 	}
 
@@ -250,5 +312,11 @@ func main() {
 	}
 
 	//提交全局事务
-	txConnection.Commit()
+	err = txConnection.Commit()
+
+	if err != nil {
+		logs.Error(err)
+		w.Write([]byte("error"))
+		return
+	}
 }

@@ -7,8 +7,10 @@ import (
 	"fmt"
 	"github.com/astaxie/beego/logs"
 	_ "github.com/go-sql-driver/mysql"
+	"io/ioutil"
 	"log"
 	"net"
+	"net/http"
 	"time"
 )
 
@@ -105,34 +107,68 @@ func (tx *TxConnection) Commit() error {
 		return err
 	}
 
-	for {
-		b := make([]byte, 1024)
-		n, err := conn.Read(b)
-		if err != nil {
-			logs.Error(err)
-			tx.Tx.Rollback()
-			conn.Close()
-			return err
-		}
-		reseiveMsg := make([]byte, n)
-		reseiveMsg = b[:n]
-		msg := Msg{}
-		json.Unmarshal(reseiveMsg, &msg)
-		if msg.Command == "commit" {
-			//收到事务管理器通知提交
-			fmt.Println(msg.Command)
-			tx.Tx.Commit()
-			conn.Close()
-			return err
-		} else if msg.Command == "rollback" {
-			//收到事务管理器通知回滚
-			fmt.Println(msg.Command)
-			tx.Tx.Rollback()
-			conn.Close()
-			return err
-		}
+	if tx.IsStart {
+		for {
+			b := make([]byte, 1024)
+			n, err := conn.Read(b)
+			if err != nil {
+				logs.Error(err)
+				tx.Tx.Rollback()
+				conn.Close()
+				return err
+			}
+			reseiveMsg := make([]byte, n)
+			reseiveMsg = b[:n]
+			msg := Msg{}
+			json.Unmarshal(reseiveMsg, &msg)
+			if msg.Command == "commit" {
+				//收到事务管理器通知提交
+				fmt.Println(msg.Command)
+				tx.Tx.Commit()
+				conn.Close()
+				return err
+			} else if msg.Command == "rollback" {
+				//收到事务管理器通知回滚
+				fmt.Println(msg.Command)
+				tx.Tx.Rollback()
+				conn.Close()
+				return err
+			}
 
+		}
+	} else {
+		go func() {
+			for {
+				b := make([]byte, 1024)
+				n, err := conn.Read(b)
+				if err != nil {
+					logs.Error(err)
+					tx.Tx.Rollback()
+					conn.Close()
+					return
+				}
+				reseiveMsg := make([]byte, n)
+				reseiveMsg = b[:n]
+				msg := Msg{}
+				json.Unmarshal(reseiveMsg, &msg)
+				if msg.Command == "commit" {
+					//收到事务管理器通知提交
+					fmt.Println(msg.Command)
+					tx.Tx.Commit()
+					conn.Close()
+					return
+				} else if msg.Command == "rollback" {
+					//收到事务管理器通知回滚
+					fmt.Println(msg.Command)
+					tx.Tx.Rollback()
+					conn.Close()
+					return
+				}
+
+			}
+		}()
 	}
+
 	return nil
 }
 
@@ -188,7 +224,14 @@ func TMBegin(db *sql.DB, isTM bool, txCount ...int) (*TxConnection, error) {
 		if len(txCount) == 0 {
 			return nil, errors.New("事务发起者请设置分支事务数量")
 		}
+
+		if txCount[0] <= 0 {
+			return nil, errors.New("分支事务数不能小于等于0")
+		}
 		txConnection.Msg.TxCount = txCount[0]
+
+		//事务发起者标识
+		txConnection.IsStart = true
 
 		err = txConnection.Begin()
 
@@ -240,6 +283,23 @@ func main() {
 
 	//执行本地事务
 	err = InsertTx(txConnection.Tx)
+	if err != nil {
+		TMCancel(txConnection)
+		logs.Error(err)
+		return
+	}
+	err = httpGet("http://localhost:1000/rm1", txConnection.Msg.GroupId)
+	if err != nil {
+		TMCancel(txConnection)
+		logs.Error(err)
+		return
+	}
+	err = httpGet("http://localhost:1001/rm2", txConnection.Msg.GroupId)
+	if err != nil {
+		TMCancel(txConnection)
+		logs.Error(err)
+		return
+	}
 
 	if err != nil {
 		//设置回滚消息
@@ -251,4 +311,23 @@ func main() {
 
 	//提交全局事务
 	txConnection.Commit()
+}
+
+func httpGet(url string, groupId string) error {
+	resp, err := http.Get(url + "?groupId=" + groupId)
+	if err != nil {
+		return err
+	}
+
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println(string(body))
+	if string(body) == "error" {
+		return errors.New("error")
+	}
+	return nil
 }
