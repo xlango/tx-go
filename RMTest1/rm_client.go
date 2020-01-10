@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"github.com/astaxie/beego/logs"
 	_ "github.com/go-sql-driver/mysql"
+	uuid "github.com/satori/go.uuid"
 	"log"
 	"net"
 	"net/http"
@@ -219,6 +220,10 @@ func TMBegin(db *sql.DB, isTM bool, txCount ...int) (*TxConnection, error) {
 
 	//是否为事务发起者TM
 	if isTM {
+		//事务发起者生成事务组ID
+		u4, _ := uuid.NewV4()
+		txConnection.Msg.GroupId =u4.String()
+
 		//分支事务总个数
 		if len(txCount) == 0 {
 			return nil, errors.New("事务发起者请设置分支事务数量")
