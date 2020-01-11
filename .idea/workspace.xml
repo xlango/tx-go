@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8f4ab9f2-741c-4f9c-bdeb-3766f75027d2" name="Default Changelist" comment="">
+    <list default="true" id="8f4ab9f2-741c-4f9c-bdeb-3766f75027d2" name="Default Changelist" comment="事务发起者生成groupId">
+      <change afterPath="$PROJECT_DIR$/proxy/proxy.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TxManager/tx_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/TxManager/tx_server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,11 +35,13 @@
     <property name="GO_FMT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../github.com/apache/rocketmq-client-go" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -47,7 +50,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoLibrariesConfigurableProvider" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -114,8 +117,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build tx-go/RMTest1" />
-        <item itemvalue="Go Build.go build tx-go/TxClient" />
         <item itemvalue="Go Build.go build tx-go/TxManager" />
+        <item itemvalue="Go Build.go build tx-go/TxClient" />
         <item itemvalue="Go Build.go build tx-go/RMTest" />
         <item itemvalue="Go Build.go build tx-go/tt" />
       </list>
@@ -142,53 +145,84 @@
     <MESSAGE value="整理0105" />
     <MESSAGE value="TM、RM封装" />
     <MESSAGE value="连接异常中断，sever通知该组所有分支事务回滚" />
-    <option name="LAST_COMMIT_MESSAGE" value="连接异常中断，sever通知该组所有分支事务回滚" />
+    <MESSAGE value="整理0107" />
+    <MESSAGE value="有事务发起者Begin时设置分支事务数量" />
+    <MESSAGE value="远程调用" />
+    <MESSAGE value="事务发起者生成groupId" />
+    <option name="LAST_COMMIT_MESSAGE" value="事务发起者生成groupId" />
+  </component>
+  <component name="VgoProject">
+    <proxy>https://mirrors.aliyun.com/goproxy/</proxy>
   </component>
   <component name="WindowStateProjectService">
-    <state x="382" y="10" key="CommitChangelistDialog2" timestamp="1578328983564">
+    <state x="361" y="76" key="#Go_Modules_(vgo)" timestamp="1578543743553">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="382" y="10" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1578328983564" />
+    <state x="361" y="76" key="#Go_Modules_(vgo)/0.0.1536.834@0.0.1536.834" timestamp="1578543743553" />
+    <state x="481" y="60" key="#go_build_tx-go/TxManager" timestamp="1578638108946">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="481" y="60" key="#go_build_tx-go/TxManager/0.0.1536.834@0.0.1536.834" timestamp="1578638108946" />
+    <state x="382" y="10" key="CommitChangelistDialog2" timestamp="1578624387110">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="382" y="10" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1578624387110" />
+    <state width="591" height="466" key="DebuggerActiveHint" timestamp="1578378315179">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="591" height="466" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1578378315179" />
+    <state x="549" y="173" key="FileChooserDialogImpl" timestamp="1578567019317">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="549" y="173" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1578567019317" />
     <state x="596" y="314" width="368" height="206" key="Github.CreateGistDialog" timestamp="1578206071848">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="596" y="314" width="368" height="206" key="Github.CreateGistDialog/0.0.1536.834@0.0.1536.834" timestamp="1578206071848" />
-    <state width="1493" height="156" key="GridCell.Tab.0.bottom" timestamp="1578368228514">
+    <state width="1493" height="185" key="GridCell.Tab.0.bottom" timestamp="1578664562923">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="156" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1578368228514" />
-    <state width="1493" height="156" key="GridCell.Tab.0.center" timestamp="1578368228514">
+    <state width="1493" height="185" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1578664562923" />
+    <state width="1493" height="185" key="GridCell.Tab.0.center" timestamp="1578664562923">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="156" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1578368228514" />
-    <state width="1493" height="156" key="GridCell.Tab.0.left" timestamp="1578368228513">
+    <state width="1493" height="185" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1578664562923" />
+    <state width="1493" height="185" key="GridCell.Tab.0.left" timestamp="1578664562923">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="156" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1578368228513" />
-    <state width="1493" height="156" key="GridCell.Tab.0.right" timestamp="1578368228514">
+    <state width="1493" height="185" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1578664562923" />
+    <state width="1493" height="185" key="GridCell.Tab.0.right" timestamp="1578664562923">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="156" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1578368228514" />
-    <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1578328146668">
+    <state width="1493" height="185" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1578664562923" />
+    <state width="1493" height="297" key="GridCell.Tab.1.bottom" timestamp="1578381199830">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1578328146668" />
-    <state width="1493" height="265" key="GridCell.Tab.1.center" timestamp="1578328146668">
+    <state width="1493" height="297" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1578381199830" />
+    <state width="1493" height="297" key="GridCell.Tab.1.center" timestamp="1578381199830">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1578328146668" />
-    <state width="1493" height="265" key="GridCell.Tab.1.left" timestamp="1578328146668">
+    <state width="1493" height="297" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1578381199830" />
+    <state width="1493" height="297" key="GridCell.Tab.1.left" timestamp="1578381199830">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1578328146668" />
-    <state width="1493" height="265" key="GridCell.Tab.1.right" timestamp="1578328146668">
+    <state width="1493" height="297" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1578381199830" />
+    <state width="1493" height="297" key="GridCell.Tab.1.right" timestamp="1578381199830">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1578328146668" />
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1578328991392">
+    <state width="1493" height="297" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1578381199830" />
+    <state x="349" y="161" key="IDE.errors.dialog" timestamp="1578471406163">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1578328991392" />
+    <state x="349" y="161" key="IDE.errors.dialog/0.0.1536.834@0.0.1536.834" timestamp="1578471406163" />
+    <state x="270" y="60" key="SettingsEditor" timestamp="1578638117413">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="270" y="60" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1578638117413" />
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1578624393909">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1578624393909" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -200,8 +234,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/TxManager/tx_server.go</url>
-          <line>74</line>
-          <option name="timeStamp" value="5" />
+          <line>75</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/TxClient/tx_client.go</url>
+          <line>227</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

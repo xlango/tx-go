@@ -16,7 +16,7 @@
 <h3>逻辑架构图</h3>
 ![img](https://github.com/xx132917/tx-go/blob/master/image/txarchitecture.png)
 
-<h3>解决问题</h3>
+<h3>解决问题</h3> 
     
     1.wait时有分支事务宕机：server发现socket连接中断，通知所有分支事务回滚
     2.wait时server宕机：本地事务发现socket连接中断，本地执行回滚
