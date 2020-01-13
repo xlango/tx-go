@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8f4ab9f2-741c-4f9c-bdeb-3766f75027d2" name="Default Changelist" comment="事务发起者生成groupId">
-      <change afterPath="$PROJECT_DIR$/proxy/proxy.go" afterDir="false" />
+    <list default="true" id="8f4ab9f2-741c-4f9c-bdeb-3766f75027d2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proxy/proxy.go" beforeDir="false" afterPath="$PROJECT_DIR$/proxy/proxy.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,8 +13,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Go File" />
         <option value="Go Application" />
+        <option value="Go File" />
       </list>
     </option>
   </component>
@@ -31,7 +30,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DefaultGoTemplateProperty" value="Go Application" />
+    <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="GO_FMT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="configurable.Global.GOPATH.is.expanded" value="true" />
@@ -61,7 +60,7 @@
       <recent name="D:\Go\workspace\go\src\tx-go\TxManager" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build tx-go/RMTest1">
+  <component name="RunManager" selected="Go Build.go build tx-go/proxy">
     <configuration name="go build tx-go/RMTest" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="tx-go" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -98,29 +97,29 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="go build tx-go/tt" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build tx-go/proxy" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="tx-go" />
       <working_directory value="$PROJECT_DIR$/" />
       <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/tt/txconnection.go" />
-      <package value="tx-go/tt" />
+      <filePath value="$PROJECT_DIR$/proxy/proxy.go" />
+      <package value="tx-go/proxy" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Go Build.go build tx-go/TxManager" />
-      <item itemvalue="Go Build.go build tx-go/tt" />
       <item itemvalue="Go Build.go build tx-go/TxClient" />
       <item itemvalue="Go Build.go build tx-go/RMTest" />
       <item itemvalue="Go Build.go build tx-go/RMTest1" />
+      <item itemvalue="Go Build.go build tx-go/proxy" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build tx-go/proxy" />
         <item itemvalue="Go Build.go build tx-go/RMTest1" />
         <item itemvalue="Go Build.go build tx-go/TxManager" />
         <item itemvalue="Go Build.go build tx-go/TxClient" />
         <item itemvalue="Go Build.go build tx-go/RMTest" />
-        <item itemvalue="Go Build.go build tx-go/tt" />
       </list>
     </recent_temporary>
   </component>
@@ -149,7 +148,9 @@
     <MESSAGE value="有事务发起者Begin时设置分支事务数量" />
     <MESSAGE value="远程调用" />
     <MESSAGE value="事务发起者生成groupId" />
-    <option name="LAST_COMMIT_MESSAGE" value="事务发起者生成groupId" />
+    <MESSAGE value="高可用方案开始" />
+    <MESSAGE value="Rounter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rounter" />
   </component>
   <component name="VgoProject">
     <proxy>https://mirrors.aliyun.com/goproxy/</proxy>
@@ -163,18 +164,18 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="481" y="60" key="#go_build_tx-go/TxManager/0.0.1536.834@0.0.1536.834" timestamp="1578638108946" />
-    <state x="382" y="10" key="CommitChangelistDialog2" timestamp="1578624387110">
+    <state x="382" y="10" key="CommitChangelistDialog2" timestamp="1578843400391">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="382" y="10" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1578624387110" />
+    <state x="382" y="10" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1578843400391" />
     <state width="591" height="466" key="DebuggerActiveHint" timestamp="1578378315179">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state width="591" height="466" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1578378315179" />
-    <state x="549" y="173" key="FileChooserDialogImpl" timestamp="1578567019317">
+    <state x="549" y="173" key="FileChooserDialogImpl" timestamp="1578882251721">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="549" y="173" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1578567019317" />
+    <state x="549" y="173" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1578882251721" />
     <state x="596" y="314" width="368" height="206" key="Github.CreateGistDialog" timestamp="1578206071848">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -219,10 +220,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="270" y="60" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1578638117413" />
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1578624393909">
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1578843407176">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1578624393909" />
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1578843407176" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
