@@ -23,4 +23,6 @@
     3.server在通知分支事务commit/rollback时有分支事务宕机：
     4.server集群方案：加上层proxy（proxy可多节点），proxy保存groupId和节点的关系，
       根据groupId将同一个groupId的连接路由到同一个节点
-    5.
+      如果不使用代理，可将数据放入redis中共享，多节点访问同一个redis中数据
+      （redis单线程，线程安全）
+  

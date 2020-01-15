@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8f4ab9f2-741c-4f9c-bdeb-3766f75027d2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proxy/proxy.go" beforeDir="false" afterPath="$PROJECT_DIR$/proxy/proxy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +150,8 @@
     <MESSAGE value="事务发起者生成groupId" />
     <MESSAGE value="高可用方案开始" />
     <MESSAGE value="Rounter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rounter" />
+    <MESSAGE value="tcp代理" />
+    <option name="LAST_COMMIT_MESSAGE" value="tcp代理" />
   </component>
   <component name="VgoProject">
     <proxy>https://mirrors.aliyun.com/goproxy/</proxy>
@@ -164,10 +165,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="481" y="60" key="#go_build_tx-go/TxManager/0.0.1536.834@0.0.1536.834" timestamp="1578638108946" />
-    <state x="382" y="10" key="CommitChangelistDialog2" timestamp="1578843400391">
+    <state x="382" y="10" key="CommitChangelistDialog2" timestamp="1578930658006">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="382" y="10" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1578843400391" />
+    <state x="382" y="10" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1578930658006" />
     <state width="591" height="466" key="DebuggerActiveHint" timestamp="1578378315179">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -220,10 +221,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="270" y="60" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1578638117413" />
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1578843407176">
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1578930666953">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1578843407176" />
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1578930666953" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
